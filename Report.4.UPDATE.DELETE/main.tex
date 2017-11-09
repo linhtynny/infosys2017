@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{array,multirow,graphicx}
+\usepackage{amsmath,amssymb,latexsym}
+\usepackage{mathabx}
+\usepackage{parskip}
+\usepackage{listings}
+\usepackage[section]{placeins}
+\usepackage{hyperref}
+\usepackage[english]{babel}
+\usepackage{biblatex}
+\renewcommand{\sfdefault}{ptm}
+\graphicspath{ {/} }
+\title{Report.4.UPDATE.DELETE}
+\author{Linh Duong}
+\date{November 2017}
+
+\begin{document}
+
+\maketitle
+
+\section{Insert new departments}
+\begin{lstlisting}[language=sql]
+insert into departments values
+('d010', 'Research and Development'), 
+('d011', 'Marketing and Sales');
+\end{lstlisting}
+\includegraphics[width=\linewidth]{1.png}
+
+\section{Move employees from 'Development' and 'Research' to new department 'Research and Development'}
+\begin{lstlisting}[language=sql]
+update ignore dept_emp
+set dept_no = 'd010'
+where dept_no = 'd005' or dept_no = 'd008';
+\end{lstlisting}
+\includegraphics[width=\linewidth]{2.png}
+
+\section{Move managers from 'Development' and 'Research' to new department 'Research and Development'}
+\begin{lstlisting}[language=sql]
+update ignore dept_manager
+set dept_no = 'd010'
+where dept_no = 'd005' or dept_no = 'd008';
+\end{lstlisting}
+\includegraphics[width=\linewidth]{3.png}
+
+\section{Move employees from 'Marketing' and 'Sales' to new department 'Marketing and Sales'}
+\begin{lstlisting}[language=sql]
+update ignore dept_emp
+set dept_no = 'd011'
+where dept_no = 'd001' or dept_no = 'd007';
+\end{lstlisting}
+\includegraphics[width=\linewidth]{4.png}
+
+\section{Move managers from 'Marketing' and 'Sales' to new department 'Marketing and Sales'}
+\begin{lstlisting}[language=sql]
+update ignore dept_manager
+set dept_no = 'd011'
+where dept_no = 'd001' or dept_no = 'd007';
+\end{lstlisting}
+\includegraphics[width=\linewidth]{5.png}
+
+\section{Delete old departments}
+\begin{lstlisting}[language=sql]
+delete from departments
+where dept_no = 'd005' or dept_no = 'd008' 
+or dept_no = 'd001' or dept_no = 'd007';
+\end{lstlisting}
+\includegraphics[width=\linewidth]{6.png}
+
+\end{document}
