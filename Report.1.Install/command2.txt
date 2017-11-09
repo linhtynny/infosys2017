@@ -1,0 +1,1 @@
+mysql -u root -p -t < test_employees_md5.sql
