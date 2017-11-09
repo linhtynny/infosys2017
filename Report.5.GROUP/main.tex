@@ -1,0 +1,71 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{array,multirow,graphicx}
+\usepackage{amsmath,amssymb,latexsym}
+\usepackage{mathabx}
+\usepackage{parskip}
+\usepackage{listings}
+\usepackage[section]{placeins}
+\usepackage{hyperref}
+\usepackage[english]{babel}
+\usepackage{biblatex}
+\renewcommand{\sfdefault}{ptm}
+\graphicspath{ {/} }
+
+\title{Report.5.GROUP}
+\author{Linh Duong}
+\date{November 2017}
+
+\begin{document}
+
+\maketitle
+
+\section{What is the average salary of each employee?}
+\begin{lstlisting}[language=sql]
+select emp_no, avg(salary) from salaries group by emp_no;
+\end{lstlisting}
+\includegraphics[width=\linewidth]{1.png}
+
+\section{How much was each employee paid in total?}
+\begin{lstlisting}[language=sql]
+select emp_no, sum(salary) from salaries group by emp_no;
+\end{lstlisting}
+\includegraphics[width=\linewidth]{2.png}
+
+\section{Minimum, maximum and total salaries of each department?}
+\begin{lstlisting}[language=sql]
+select dept_no, min(salary), max(salary) 
+	from dept_emp join salaries on salaries.emp_no = dept_emp.emp_no
+	group by dept_no;
+\end{lstlisting}
+\includegraphics[width=\linewidth]{3.png}
+
+\section{Which departments have paid more than 20 billion dollars for their employees?}
+\begin{lstlisting}[language=sql]
+select dept_no, sum(salary) 
+	from dept_emp join salaries on salaries.emp_no = dept_emp.emp_no
+	group by dept_no having sum(salary)>20000000000;
+\end{lstlisting}
+\includegraphics[width=\linewidth]{4.png}
+
+\section{Total salaries of male employees in each department?}
+\begin{lstlisting}[language=sql]
+select dept_no, sum(salary) 
+	from dept_emp join salaries on salaries.emp_no = dept_emp.emp_no
+	join employees on salaries.emp_no = employees.emp_no
+	where gender='M'
+	group by dept_no;
+\end{lstlisting}
+\includegraphics[width=\linewidth]{5.png}
+
+\section{Total salaries of department managers for each department,
+from highest to lowest?}
+\begin{lstlisting}[language=sql]
+select dept_no, sum(salary) as summ
+	from dept_manager join salaries on salaries.emp_no = dept_manager.emp_no
+	group by dept_no 
+	order by summ desc;
+\end{lstlisting}
+\includegraphics[width=\linewidth]{6.png}
+
+\end{document}
