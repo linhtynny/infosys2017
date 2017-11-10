@@ -20,7 +20,7 @@
 
 \maketitle
 
-\section{What is the average salary of each employee?}
+\section{Who have the same name as the managers of the “Finance” department?}
 \begin{lstlisting}[language=sql]
 select distinct employees.emp_no,concat(first_name,' ',last_name) 
 as fullname
@@ -34,7 +34,7 @@ and dept_name='Finance');
 \end{lstlisting}
 \includegraphics[width=\linewidth]{1.png}
 
-\section{How much was each employee paid in total?}
+\section{Who in the “Production” department were hired after the promotion of the last manager in that department?}
 \begin{lstlisting}[language=sql]
 select employees.emp_no, concat(first_name,' ',last_name)
 as fullname
@@ -48,7 +48,7 @@ order by from_date desc limit 0,1);
 \end{lstlisting}
 \includegraphics[width=\linewidth]{2.png}
 
-\section{Minimum, maximum and total salaries of each department?}
+\section{Find the average salary of each department, from highest to lowest.}
 \begin{lstlisting}[language=sql]
 select dept_name, average from 
 (select dept_emp.dept_no, dept_name, avg(salary) as average 
@@ -60,15 +60,16 @@ order by average desc;
 \end{lstlisting}
 \includegraphics[width=\linewidth]{3.png}
 
-\section{Which departments have paid more than 20 billion dollars for their employees?}
+\section{Find the average salary for each type of Engineer, from highest to lowest.}
 \begin{lstlisting}[language=sql]
-select title, avg(salary) as average 
-from salaries join employees on employees.emp_no=salaries.emp_no 
-join titles on employees.emp_no = titles.emp_no
-where title in (select distinct title 
-from titles where title like '%Engineer%')
+select title, avg(avgsalary) as averagesalary
+from 
+(select emp_no,avg(salary) as avgsalary
+from salaries group by emp_no) as average
+join titles on average.emp_no=titles.emp_no 
+and title like '%Engineer%'
 group by title
-order by average desc;
+order by averagesalary desc;
 \end{lstlisting}
 \includegraphics[width=\linewidth]{4.png}
 
