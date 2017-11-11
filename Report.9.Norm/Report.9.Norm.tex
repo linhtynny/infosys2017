@@ -1,0 +1,119 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Report.9.Norm}
+\author{Linh Duong}
+\date{November 2017}
+
+\begin{document}
+
+\maketitle
+
+\section{Which normal form does the employee database satisfy?}
+The employee database satisfies all 3 normal form rules to reduce the data redundancy.\\
+- 1NF: There is not any repeated column in each table of the database. \\
+- 2NF: In each table, there is not any column that is independent from the primary key.
+- 3NF: In each table, there is no information that can be inferred from the others
+
+\section{Produce a 3NF of the following Order form document by normalization}
+\begin{center}
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    \centering  cus\_id & name & phone & addr\_id \\
+    \hline
+    c001 & Tran Giang Son & +84-4 37 91 69 60 & a001 \\
+    \hline
+    \end{tabular}
+    \bigskip 
+    \newline Figure 1: Customer 
+\end{center}
+
+\bigskip 
+\bigskip 
+\bigskip 
+
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \centering  addr\_id & address & city \\
+    \hline
+    a001 & 18 Hoang Quoc Viet & Hanoi, Vietnam \\
+    \hline
+    \end{tabular}
+    \bigskip 
+    \newline Figure 2: Address
+\end{center}
+
+\bigskip 
+\bigskip 
+\bigskip 
+
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \centering  ord\_id & date & cus\_id \\
+    \hline
+    on 7126 & 11/07/2016 & c001 \\
+    \hline
+    \end{tabular}
+    \bigskip 
+    \newline Figure 3: Order\_information
+\end{center}
+
+\bigskip 
+\bigskip 
+\bigskip 
+
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \centering  ord\_id & pro\_id & quantity \\
+    \hline
+    on 7126 & P101 & 1 \\
+    \hline
+    on 7126 & P102 & 1 \\
+    \hline
+    on 7126 & P103 & 1 \\
+    \hline
+    on 7126 & P104 & 1 \\
+    \hline
+    on 7126 & P105 & 1 \\
+    \hline
+    on 7126 & P106 & 1 \\
+    \hline
+    on 7126 & P107 & 1 \\
+    \hline
+    \end{tabular}
+    \bigskip 
+    \newline Figure 4: Order\_detail
+\end{center}
+
+\bigskip 
+\bigskip 
+\bigskip 
+
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \centering  pro\_id & description & price \\
+    \hline
+     P101 & Intel i7 6700K & 349\\
+    \hline
+     P102 & ASUS Z170A-P & 149 \\
+    \hline
+     P103 & Corsair DDR44x8GB & 469 \\
+    \hline
+     P104 & Samsung EVO 850 512GB & 249 \\
+    \hline
+     P105 & GeForce GTX 1080 8G & 725 \\
+    \hline
+     P106 & Corsair CS750M 80+ Gold & 119 \\
+    \hline
+     P107 & Corsair Carbide 400R Mid & 85 \\
+    \hline
+    \end{tabular}
+    \bigskip 
+    \newline Figure 5: Product
+\end{center}
+
+\end{document}
