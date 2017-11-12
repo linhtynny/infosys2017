@@ -46,23 +46,18 @@
     \subitem name
     \subitem e-mail address
     \subitem ascription
-
+    
+    \item Order
+    \subitem number
 \end{itemize}
 
-\section{Determine links}
+\subsection{Determine links}
 \begin{itemize}
     \item Article and Magazine (has)
     \item Author and Article (has)
 \end{itemize}
 
-\section{Determine types}
-\begin{itemize}
-    \item Magazine
-    \item Article
-    \item Author
-\end{itemize}
-
-\section{Determine attributes}
+\subsection{Determine types}
 \begin{itemize}
     \item Magazine
     \subitem title VARCHAR(200)
@@ -83,7 +78,7 @@
     
 \end{itemize}
 
-\section{Solve foreign key links}
+\subsection{Solve foreign key links}
 \begin{itemize}
     \item Magazine
     \subitem maga\_id INT 
@@ -117,6 +112,7 @@
 create database if not exists Magazines;
 
 use magazines;
+
 
 create table magazine (
 maga_id int not null auto_increment, 
